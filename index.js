@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.post("/chat", async (request, response) => {
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
   const openai = new OpenAIApi(configuration);
   const { question } = request.body;
@@ -66,7 +66,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.post("/ajax-request", async (request, response) => {
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
   const openai = new OpenAIApi(configuration);
   const { question } = request.body;
