@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-chatgpt-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "highlight.js": "^11.8.0",
+    "markdown": "^0.5.0",
+    "markdown-to-html": "^0.0.13",
+    "marked": "^7.0.5",
+    "md-block": "^0.0.1",
+    "openai": "^3.3.0",
+    "path": "^0.12.7",
+    "showdown": "^2.1.0"
+  }
+}
