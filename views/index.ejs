@@ -13,9 +13,9 @@
         <div class="container">
             <br>
             <h1>Ask Some Question</h1>
-            <input type="text" id="form1" name="question" class="form-control"/><br>
-            <input type="text" id="form2" name="api_key" class="form-control"/><br>
-            <button class="btn btn-primary" type="submit" onclick="get_answer()" />Submit Answer</button>
+            <input type="text" id="form1" name="question" class="form-control" placeholder="Question" /><br>
+            <input type="text" id="form2" name="api_key" class="form-control" placeholder="API KEY" /><br>
+            <button class="btn btn-primary" type="submit" onclick="validate()" />Submit Answer</button>
             <br><br>
             <hr>
             <div class="answer" id="answer" ></div>
@@ -27,12 +27,16 @@
     var input = document.getElementById("form1");
     input.addEventListener("keydown", function (e) {
         if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
-            validate(e);
+            validate();
         }
     });
 
-    function validate(e) {
-        var text = e.target.value;
+    function validate() {
+        var form1 = document.getElementById("form1")
+        var form2 = document.getElementById("form2")
+        if((form1.value == "") || (form2.value == "")){
+            alert("Fill all Required Input")
+        } 
         get_answer()
     }
     function get_answer() {
