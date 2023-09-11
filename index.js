@@ -35,11 +35,12 @@ app.post("/test",(request,response)=>{
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.post("/chat", async (request, response) => {
+  const { question } = request.body;
+  const { api_key } = request.body;
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: api_key,
   });
   const openai = new OpenAIApi(configuration);
-  const { question } = request.body;
   const result = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
@@ -65,11 +66,15 @@ app.post("/chat", async (request, response) => {
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.post("/ajax-request", async (request, response) => {
+  // GET DATA
+  const { question } = request.body;
+  const { api_key } = request.body;
+  // API
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: api_key,
   });
   const openai = new OpenAIApi(configuration);
-  const { question } = request.body;
+
   const result = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
@@ -86,7 +91,7 @@ app.post("/ajax-request", async (request, response) => {
   const markdownText = result.data.choices[0].message.content; // The Markdown text from the request body
   const html = converter.makeHtml(markdownText);
   
-  console.log(html)
+  //console.log(html)
   
   response.render('ajax_result', {answer:html})
 });

@@ -14,6 +14,7 @@
             <br>
             <h1>Ask Some Question</h1>
             <input type="text" id="form1" name="question" class="form-control"/><br>
+            <input type="text" id="form2" name="api_key" class="form-control"/><br>
             <button class="btn btn-primary" type="submit" onclick="get_answer()" />Submit Answer</button>
             <br><br>
             <hr>
@@ -38,10 +39,11 @@
         document.getElementById("answer").style.display = "none";
         document.getElementById("loader").style.display = "block";
         form1 = document.getElementById('form1').value;
+        form2 = document.getElementById('form2').value;
         $.ajax({
             url: '/ajax-request',
             method: 'POST',
-            data: { question: form1},
+            data: { question: form1, api_key: form2},
             success: function(response) {
                 // Perform DOM manipulation with the received data
                 document.getElementById("loader").style.display = "none";
