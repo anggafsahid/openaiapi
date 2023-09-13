@@ -67,33 +67,39 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.post("/ajax-request", async (request, response) => {
   // GET DATA
-  const { question } = request.body;
-  const { api_key } = request.body;
-  // API
-  const configuration = new Configuration({
-    apiKey: api_key,
-  });
-  const openai = new OpenAIApi(configuration);
+// GET DATA
+  const { question, api_key } = request.body;
 
-  const result = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [
-      {
-        role: "system",
-        content: "You are a EbereGPT. You can help with graphic design tasks",
-      },
-      {
-        role: "user", 
-        content: question
-      },
-    ],
-  });
-  const markdownText = result.data.choices[0].message.content; // The Markdown text from the request body
-  const html = converter.makeHtml(markdownText);
-  
-  //console.log(html)
-  
-  response.render('ajax_result', {answer:html})
+  try {
+    // API
+    const configuration = new Configuration({
+      apiKey: api_key,
+    });
+    const openai = new OpenAIApi(configuration);
+
+    const result = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: "You are a EbereGPT. You can help with graphic design tasks",
+        },
+        {
+          role: "user", 
+          content: question
+        },
+      ],
+    });
+    const markdownText = result.data.choices[0].message.content; // The Markdown text from the request body
+    const html = converter.makeHtml(markdownText);
+    
+    //console.log(html)
+    
+    response.render('ajax_result', {answer:html})
+  } catch (error) {
+    console.log(error)
+    response.render('ajax_result', {answer:error.message})
+  }
 });
 
 
