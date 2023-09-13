@@ -95,7 +95,7 @@ app.post("/ajax-request", async (request, response) => {
     
     //console.log(html)
     
-    response.render('ajax_result', {answer:html})
+    response.render('ajax_result', {answer:html, question:question})
   } catch (error) {
     console.log(error)
     response.render('ajax_result', {answer:error.message})
